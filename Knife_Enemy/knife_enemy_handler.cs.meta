@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 424366938520f044695103e32a529221
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Enemy_Attack_Left: {fileID: 5913958443830565580, guid: 4ddad59b54faea149b467e4903d42715, type: 3}
+  - Enemy_Attack_Right: {fileID: 5129564146736297042, guid: a5ae1e68eb67e73489be6d913ac28acf, type: 3}
+  - Enemy_Attack_Up: {fileID: 8162010342982040513, guid: cda4d8ec22d0612469fe9aba15973b3e, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
