@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class player_handler : MonoBehaviour
 {
@@ -50,13 +51,15 @@ public class player_handler : MonoBehaviour
                 }
             }
         }
+        
+        //death stuff
         if(health < 0) {
-            Destroy(GameObject.Find("Player"));
+            SceneManager.LoadScene("Ded");
         }
         MovementHandler();
         
     }
-
+        //Movement stuff
     void MovementHandler() {
         if(Input.GetKeyDown(KeyCode.W) && isGrounded && flight == false) {
             rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
