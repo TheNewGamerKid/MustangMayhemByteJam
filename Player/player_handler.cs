@@ -10,7 +10,9 @@ public class player_handler : MonoBehaviour
     public float speed = 5;
     public float flightSpeed = 10;
     public bool flight = false;
-    public float health = 100f;
+    public int curHealth = 0;
+    public int maxHealth = 100;
+    public HealthBar healthBar;
     private bool isGrounded = true;
     private Vector3 playerPosition;
     private GameObject[] attacks;
@@ -20,7 +22,7 @@ public class player_handler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        curHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -41,13 +43,14 @@ public class player_handler : MonoBehaviour
                     health -= 30;
                 }
                 if(attack.name == "Knife_Left(Clone)") {
-                    health -= 45;
+                    DamagePlayer(45);
                 }
                 if(attack.name == "Knife_Right(Clone)") {
                     health -= 45;
                 }
                 if(attack.name == "Knife_Up(Clone)") {
                     health -= 45;
+
                 }
             }
         }
@@ -90,6 +93,13 @@ public class player_handler : MonoBehaviour
         if(Input.GetKey(KeyCode.A)) {
             transform.position += -transform.right * speed * Time.deltaTime;
         }
+    }
+
+    public void DamagePlayer(int damage)
+    {
+        curHealth -= damage;
+
+        healthBar.SetHealth(curHealth);
     }
 
     void OnCollisionEnter2D(Collision2D targetObj){
