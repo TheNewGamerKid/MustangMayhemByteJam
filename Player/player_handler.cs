@@ -12,7 +12,7 @@ public class player_handler : MonoBehaviour
     public bool flight = false;
     public int curHealth = 0;
     public int maxHealth = 100;
-    public HealthBar healthBar;
+    public int healthBar;
     private bool isGrounded = true;
     private Vector3 playerPosition;
     private GameObject[] attacks;
@@ -37,26 +37,35 @@ public class player_handler : MonoBehaviour
             if(hypotenuse < 1) {
                 Destroy(attack);
                 if(attack.name == "Bullet(Clone)") {
-                    health -= 5;
+                    DamagePlayer(5);
                 }
+            
                 if(attack.name == "Rocket(Clone)") {
-                    health -= 30;
+                    DamagePlayer(30);
                 }
+            
                 if(attack.name == "Knife_Left(Clone)") {
                     DamagePlayer(45);
                 }
                 if(attack.name == "Knife_Right(Clone)") {
-                    health -= 45;
+                    DamagePlayer(45);
                 }
+            
                 if(attack.name == "Knife_Up(Clone)") {
-                    health -= 45;
-
+                    DamagePlayer(45);
                 }
+
+        
             }
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            DamagePlayer(10);
+        }
+
         //death stuff
-        if(health < 0) {
+        if (curHealth < 0) {
             SceneManager.LoadScene("Ded");
         }
         MovementHandler();
@@ -97,12 +106,13 @@ public class player_handler : MonoBehaviour
 
     public void DamagePlayer(int damage)
     {
-        curHealth -= damage;
-
-        healthBar.SetHealth(curHealth);
+        {
+            curHealth -= damage;
+        }
     }
 
-    void OnCollisionEnter2D(Collision2D targetObj){
+
+void OnCollisionEnter2D(Collision2D targetObj){
         isGrounded = true;
     }
 

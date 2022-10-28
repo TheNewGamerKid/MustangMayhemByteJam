@@ -65,7 +65,6 @@ public class gun_enemy_handler : MonoBehaviour
     }
 
     void CreatePrefab() {
-        Debug.Log(Time.time - time);
         float spread = Random.Range(-accuracy, accuracy);
         float angle = Mathf.Atan2(yDifference, xDifference) * Mathf.Rad2Deg - 90 + spread;
         Quaternion rotation = Quaternion.Euler(this.transform.rotation.x, this.transform.rotation.y, angle);
