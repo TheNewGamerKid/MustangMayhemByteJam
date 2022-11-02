@@ -10,9 +10,9 @@ public class player_handler : MonoBehaviour
     public float speed = 5;
     public float flightSpeed = 10;
     public bool flight = false;
-    public int curHealth = 0;
-    public int maxHealth = 100;
-    public int healthBar;
+    public double curHealth = 0;
+    public double maxHealth = 100;
+    public double healthBar = 1;
     private bool isGrounded = true;
     private Vector3 playerPosition;
     private GameObject[] attacks;
@@ -37,22 +37,22 @@ public class player_handler : MonoBehaviour
             if(hypotenuse < 1) {
                 Destroy(attack);
                 if(attack.name == "Bullet(Clone)") {
-                    DamagePlayer(5);
+                    DamagePlayer(.5);
                 }
             
                 if(attack.name == "Rocket(Clone)") {
-                    DamagePlayer(30);
+                    DamagePlayer(.30);
                 }
             
                 if(attack.name == "Knife_Left(Clone)") {
-                    DamagePlayer(45);
+                    DamagePlayer(.45);
                 }
                 if(attack.name == "Knife_Right(Clone)") {
-                    DamagePlayer(45);
+                    DamagePlayer(.45);
                 }
             
                 if(attack.name == "Knife_Up(Clone)") {
-                    DamagePlayer(45);
+                    DamagePlayer(.45);
                 }
 
         
@@ -104,10 +104,12 @@ public class player_handler : MonoBehaviour
         }
     }
 
-    public void DamagePlayer(int damage)
+    public void DamagePlayer(double damage)
     {
         {
             curHealth -= damage;
+
+            healthBar = curHealth;
         }
     }
 
