@@ -11,7 +11,7 @@ public class player_handler : MonoBehaviour
     public float flightSpeed = 10;
     public bool flight = false;
     public double curHealth = 0;
-    public double maxHealth = 100;
+    public double maxHealth = 1;
     public double healthBar = 1;
     private bool isGrounded = true;
     private Vector3 playerPosition;
@@ -37,7 +37,7 @@ public class player_handler : MonoBehaviour
             if(hypotenuse < 1) {
                 Destroy(attack);
                 if(attack.name == "Bullet(Clone)") {
-                    DamagePlayer(.5);
+                    DamagePlayer(.05);
                 }
             
                 if(attack.name == "Rocket(Clone)") {
@@ -61,7 +61,7 @@ public class player_handler : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            DamagePlayer(10);
+            DamagePlayer(.10);
         }
 
         //death stuff
