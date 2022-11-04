@@ -9,7 +9,7 @@ public class SceneControl : MonoBehaviour
     public void NextScene(string scene)
     {
         SceneManager.LoadScene("mainMenu");
-        Debug.Log("agh");
+        
     }
     
     // Start is called before the first frame update
