@@ -13,6 +13,7 @@ public class player_handler : MonoBehaviour
     public double curHealth = 0;
     public double maxHealth = 1;
     public double healthBar = 1;
+    public double healthNumber;
     private bool isGrounded = true;
     private Vector3 playerPosition;
     private GameObject[] attacks;
@@ -61,7 +62,7 @@ public class player_handler : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            DamagePlayer(.10);
+            DamagePlayer(.50);
         }
 
         //death stuff
@@ -110,6 +111,8 @@ public class player_handler : MonoBehaviour
             curHealth -= damage;
 
             healthBar = curHealth;
+
+            healthNumber = healthBar;
         }
     }
 
