@@ -67,7 +67,7 @@ public class player_handler : MonoBehaviour
 
         //death stuff
         if (curHealth < 0) {
-            SceneManager.LoadScene("Ded");
+            SceneManager.LoadScene("Dead");
         }
         MovementHandler();
         

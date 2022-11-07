@@ -8,7 +8,7 @@ public class SceneControl : MonoBehaviour
 
     public void NextScene(string scene)
     {
-        SceneManager.LoadScene("mainMenu");
+        SceneManager.LoadScene("MainMenu");
         
     }
     
