@@ -10,16 +10,11 @@ public class player_handler : MonoBehaviour
     public float speed = 5;
     public float flightSpeed = 10;
     public bool flight = false;
-<<<<<<< HEAD
+
     public double curHealth = 0;
     public double maxHealth = 1;
     public double healthBar = 1;
     public double healthNumber;
-=======
-    public int curHealth = 0;
-    public int maxHealth = 100;
-    public int healthBar;
->>>>>>> c457cbdc44a2be1809be394b81a2a681e90dff9c
     private bool isGrounded = true;
     private Vector3 playerPosition;
     private GameObject[] attacks;
@@ -45,7 +40,7 @@ public class player_handler : MonoBehaviour
             if (hypotenuse < 1)
             {
                 Destroy(attack);
-<<<<<<< HEAD
+
                 if(attack.name == "Bullet(Clone)") {
                     DamagePlayer(.05);
                 }
@@ -66,7 +61,7 @@ public class player_handler : MonoBehaviour
                 }
 
         
-=======
+
                 if (attack.name == "Bullet(Clone)")
                 {
                     DamagePlayer(5);
@@ -92,30 +87,22 @@ public class player_handler : MonoBehaviour
                 }
 
 
->>>>>>> c457cbdc44a2be1809be394b81a2a681e90dff9c
+
             }
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-<<<<<<< HEAD
+
             DamagePlayer(.50);
         }
 
         //death stuff
         if (curHealth < 0) {
             SceneManager.LoadScene("Dead");
-=======
+
             DamagePlayer(10);
         }
-
-        //death stuff
-        if (curHealth < 0)
-        {
-            SceneManager.LoadScene("Ded");
->>>>>>> c457cbdc44a2be1809be394b81a2a681e90dff9c
-        }
-        MovementHandler();
 
     }
     //Movement stuff
@@ -166,28 +153,29 @@ public class player_handler : MonoBehaviour
         {
             curHealth -= damage;
 
-<<<<<<< HEAD
+
             healthBar = curHealth;
 
             healthNumber = healthBar;
-=======
 
->>>>>>> c457cbdc44a2be1809be394b81a2a681e90dff9c
+
+
         }
     }
 
 
-<<<<<<< HEAD
-void OnCollisionEnter2D(Collision2D targetObj){
-=======
-    void OnCollisionEnter2D(Collision2D targetObj)
-    {
->>>>>>> c457cbdc44a2be1809be394b81a2a681e90dff9c
-        isGrounded = true;
-    }
 
-    void OnCollisionExit2D()
-    {
-        isGrounded = false;
+    void OnCollisionEnter2D(Collision2D targetObj){
+
+        void OnCollisionEnter2D(Collision2D targetObj)
+        {
+
+            isGrounded = true;
+        }
+
+        void OnCollisionExit2D()
+        {
+            isGrounded = false;
+        }
     }
 }
