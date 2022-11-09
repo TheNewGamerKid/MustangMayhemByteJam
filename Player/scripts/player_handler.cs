@@ -20,6 +20,16 @@ public class player_handler : MonoBehaviour
     private float xDifference;
     private float yDifference;
     private float hypotenuse;
+    public float accuracy = 5f;
+    public float magCap = 7f;
+    public float reloadTime = 5f;
+    public float cyclicRate = .25f;
+    public float despawnTime = 5f;
+    public GameObject Bullet;
+
+    private GameObject newInstance;
+    private float numShots = 0f;
+    private float time = .5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,26 +73,26 @@ public class player_handler : MonoBehaviour
 
                 if (attack.name == "Bullet(Clone)")
                 {
-                    DamagePlayer(5);
+                    DamagePlayer(.05);
                 }
 
                 if (attack.name == "Rocket(Clone)")
                 {
-                    DamagePlayer(30);
+                    DamagePlayer(.30);
                 }
 
                 if (attack.name == "Knife_Left(Clone)")
                 {
-                    DamagePlayer(45);
+                    DamagePlayer(.45);
                 }
                 if (attack.name == "Knife_Right(Clone)")
                 {
-                    DamagePlayer(45);
+                    DamagePlayer(.45);
                 }
 
                 if (attack.name == "Knife_Up(Clone)")
                 {
-                    DamagePlayer(45);
+                    DamagePlayer(.45);
                 }
 
 
@@ -99,8 +109,6 @@ public class player_handler : MonoBehaviour
         //death stuff
         if (curHealth < 0) {
             SceneManager.LoadScene("Dead");
-
-            DamagePlayer(10);
         }
         MovementHandler();
 
@@ -160,6 +168,18 @@ public class player_handler : MonoBehaviour
 
 
 
+        }
+    }
+
+    void CreatePrefab()
+    {
+        Quaternion rotation = Quaternion.Euler(this.transform.rotation.x, this.transform.rotation.y, 10);
+        if (Time.time - time > cyclicRate)
+        {
+            time = Time.time;
+            numShots++;
+            newInstance = Instantiate(Bullet, this.transform.position, rotation);
+            Destroy(newInstance, despawnTime);
         }
     }
 
