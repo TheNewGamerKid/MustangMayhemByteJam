@@ -10,7 +10,6 @@ public class player_handler : MonoBehaviour
     public float speed = 5;
     public float flightSpeed = 10;
     public bool flight = false;
-
     public double curHealth = 0;
     public double maxHealth = 1;
     public double healthBar = 1;
@@ -21,6 +20,16 @@ public class player_handler : MonoBehaviour
     private float xDifference;
     private float yDifference;
     private float hypotenuse;
+    public float accuracy = 5f;
+    public float magCap = 7f;
+    public float reloadTime = 5f;
+    public float cyclicRate = .25f;
+    public float despawnTime = 500f;
+    public GameObject Bullet1;
+
+    private GameObject newInstance;
+    private float numShots = 0f;
+    private float time = .5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,46 +53,46 @@ public class player_handler : MonoBehaviour
                 if(attack.name == "Bullet(Clone)") {
                     DamagePlayer(.05);
                 }
-            
+           
                 if(attack.name == "Rocket(Clone)") {
                     DamagePlayer(.30);
                 }
-            
+           
                 if(attack.name == "Knife_Left(Clone)") {
                     DamagePlayer(.45);
                 }
                 if(attack.name == "Knife_Right(Clone)") {
                     DamagePlayer(.45);
                 }
-            
+           
                 if(attack.name == "Knife_Up(Clone)") {
                     DamagePlayer(.45);
                 }
 
-        
+       
 
                 if (attack.name == "Bullet(Clone)")
                 {
-                    DamagePlayer(5);
+                    DamagePlayer(.05);
                 }
 
                 if (attack.name == "Rocket(Clone)")
                 {
-                    DamagePlayer(30);
+                    DamagePlayer(.30);
                 }
 
                 if (attack.name == "Knife_Left(Clone)")
                 {
-                    DamagePlayer(45);
+                    DamagePlayer(.45);
                 }
                 if (attack.name == "Knife_Right(Clone)")
                 {
-                    DamagePlayer(45);
+                    DamagePlayer(.45);
                 }
 
                 if (attack.name == "Knife_Up(Clone)")
                 {
-                    DamagePlayer(45);
+                    DamagePlayer(.45);
                 }
 
 
@@ -97,12 +106,16 @@ public class player_handler : MonoBehaviour
             DamagePlayer(.50);
         }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            CreatePrefab();
+        }
+
         //death stuff
         if (curHealth < 0) {
             SceneManager.LoadScene("Dead");
-
-            DamagePlayer(10);
         }
+        MovementHandler();
 
     }
     //Movement stuff
@@ -163,13 +176,17 @@ public class player_handler : MonoBehaviour
         }
     }
 
+    void CreatePrefab()
+    {
+            Quaternion rotation = Quaternion.Euler(this.transform.rotation.x, this.transform.rotation.y, 10);      
+            numShots++;            
+            newInstance = Instantiate(Bullet1);
+            Destroy(newInstance, despawnTime);
+    }
 
-
-    void OnCollisionEnter2D(Collision2D targetObj){
 
         void OnCollisionEnter2D(Collision2D targetObj)
         {
-
             isGrounded = true;
         }
 
@@ -177,5 +194,4 @@ public class player_handler : MonoBehaviour
         {
             isGrounded = false;
         }
-    }
 }

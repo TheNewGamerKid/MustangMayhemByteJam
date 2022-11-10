@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TimeHandler : MonoBehaviour
 {
@@ -14,11 +15,12 @@ public class TimeHandler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         if(timeElapsed < totalTime) {
             timeElapsed = Time.time;
             GetComponent<TMPro.TextMeshPro>().text = Mathf.Ceil(totalTime - timeElapsed).ToString();
         }
+       
+
     }
 }

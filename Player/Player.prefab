@@ -156,6 +156,12 @@ MonoBehaviour:
   maxHealth: 100
   healthBar: 0
   healthNumber: 0
+  accuracy: 5
+  magCap: 7
+  reloadTime: 5
+  cyclicRate: 0.25
+  despawnTime: 500
+  Bullet1: {fileID: 3444235889322684024, guid: 089f69a6905cad141b0155c51f296de0, type: 3}
 --- !u!1 &1677494111926553761
 GameObject:
   m_ObjectHideFlags: 0
