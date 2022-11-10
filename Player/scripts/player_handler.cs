@@ -24,8 +24,8 @@ public class player_handler : MonoBehaviour
     public float magCap = 7f;
     public float reloadTime = 5f;
     public float cyclicRate = .25f;
-    public float despawnTime = 5f;
-    public GameObject Bullet;
+    public float despawnTime = 500f;
+    public GameObject Bullet1;
 
     private GameObject newInstance;
     private float numShots = 0f;
@@ -106,6 +106,11 @@ public class player_handler : MonoBehaviour
             DamagePlayer(.50);
         }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            CreatePrefab();
+        }
+
         //death stuff
         if (curHealth < 0) {
             SceneManager.LoadScene("Dead");
@@ -173,20 +178,12 @@ public class player_handler : MonoBehaviour
 
     void CreatePrefab()
     {
-        Quaternion rotation = Quaternion.Euler(this.transform.rotation.x, this.transform.rotation.y, 10);
-        if (Time.time - time > cyclicRate)
-        {
-            time = Time.time;
-            numShots++;
-            newInstance = Instantiate(Bullet, this.transform.position, rotation);
+            Quaternion rotation = Quaternion.Euler(this.transform.rotation.x, this.transform.rotation.y, 10);       
+            numShots++;            
+            newInstance = Instantiate(Bullet1);
             Destroy(newInstance, despawnTime);
-        }
     }
 
-
-
-    void OnCollisionEnter2D(Collision2D targetObj)
-    {
 
         void OnCollisionEnter2D(Collision2D targetObj)
         {
@@ -197,5 +194,4 @@ public class player_handler : MonoBehaviour
         {
             isGrounded = false;
         }
-    }
 }

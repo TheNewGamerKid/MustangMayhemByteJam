@@ -131,6 +131,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1677494111117116792, guid: cc4cef485dd49fe4c880e2544ee36ec2, type: 3}
+      propertyPath: Bullet1
+      value: 
+      objectReference: {fileID: 3444235889322684024, guid: d9b66a3f9e88a214491b3482ccbc64cf, type: 3}
+    - target: {fileID: 1677494111117116792, guid: cc4cef485dd49fe4c880e2544ee36ec2, type: 3}
       propertyPath: maxHealth
       value: 1
       objectReference: {fileID: 0}
@@ -308,11 +312,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6459684218713277339, guid: 57f9e2daafaac4541a4e0252beac9210, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.82
+      value: -11.61
       objectReference: {fileID: 0}
     - target: {fileID: 6459684218713277339, guid: 57f9e2daafaac4541a4e0252beac9210, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.66
+      value: 1.27
       objectReference: {fileID: 0}
     - target: {fileID: 6459684218713277339, guid: 57f9e2daafaac4541a4e0252beac9210, type: 3}
       propertyPath: m_LocalPosition.z
