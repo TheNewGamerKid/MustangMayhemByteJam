@@ -20,7 +20,8 @@ public class TimeHandler : MonoBehaviour
             timeElapsed = Time.time;
             GetComponent<TMPro.TextMeshPro>().text = Mathf.Ceil(totalTime - timeElapsed).ToString();
         }
-       
-
+        if(Mathf.Ceil(totalTime - timeElapsed) == 0){
+        SceneManager.LoadScene("TimerScene");
+        }
     }
 }
