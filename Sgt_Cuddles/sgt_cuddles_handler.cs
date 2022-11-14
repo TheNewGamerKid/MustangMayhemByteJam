@@ -21,6 +21,7 @@ public class sgt_cuddles_handler : MonoBehaviour
     private float artilleryYDifference;
     private float artilleryHypotenuse;
     private float playerHypotenuse;
+    private float health = 1000f;
     // Start is called before the first frame update
     void Start()
     {
@@ -89,6 +90,23 @@ public class sgt_cuddles_handler : MonoBehaviour
                     transform.position += transform.right * speed * Time.deltaTime;
                 }
             }
+        }
+
+        GameObject[] attacks = GameObject.FindGameObjectsWithTag("Player_Attacks");
+        
+        foreach(GameObject attack in attacks) {
+            float x = gameObject.transform.position.x - attack.transform.position.x;
+            float y = gameObject.transform.position.y - attack.transform.position.y;
+            float hypotenuse = Mathf.Sqrt(Mathf.Pow(Mathf.Abs(x), 2) + Mathf.Pow(y, 2));
+
+            if(hypotenuse < 1f) {
+                health -= 20f;
+                Destroy(attack);
+            }
+        }
+
+        if(health <= 0f) {
+            Destroy(gameObject);
         }
     }
 

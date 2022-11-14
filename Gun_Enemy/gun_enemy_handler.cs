@@ -4,22 +4,30 @@ using UnityEngine;
 
 public class gun_enemy_handler : MonoBehaviour
 {
-    public float sight = 20f;
-    public float speed = 2.5f;
-    public float accuracy = 5f;
-    public float magCap = 7f;
-    public float reloadTime = 5f;
-    public float cyclicRate = .25f;
+
     public float despawnTime = 5f;
+    public float reloadTime = 5f;
+    public float speed = 2.5f;
+    public Sprite Pistol;
+    public Sprite Rifle;
     public GameObject Bullet;
-    private Vector3 playerPosition;
+    public float cyclicRate;
+    public float accuracy;
+    public float magCap;
+    public float sight;
+    public int type;
+
     private GameObject newInstance;
+    private Vector3 playerPosition;
     private float numShots = 0f;
-    private float time = .5f;
+    private float health = 40f;
     private float xDifference;
     private float yDifference;
+    private float time;
     private float hypotenuse;
+
     // Start is called before the first frame update
+
     void Start()
     {
         
@@ -33,6 +41,11 @@ public class gun_enemy_handler : MonoBehaviour
         yDifference = playerPosition.y - transform.position.y;
         hypotenuse = Mathf.Sqrt(Mathf.Pow(Mathf.Abs(xDifference), 2) + Mathf.Pow(yDifference, 2));
 
+        MovementHandler();
+        DamageHandler();
+    }
+
+    void MovementHandler() {
         if(hypotenuse <= sight && hypotenuse >= 10) {
             if(playerPosition.x > transform.position.x) {
                 transform.position += transform.right * speed * Time.deltaTime;
@@ -50,30 +63,24 @@ public class gun_enemy_handler : MonoBehaviour
                 transform.position += transform.right * speed * Time.deltaTime;
             }
         }
-
-        if(hypotenuse <= 10) {
-            if(magCap > numShots) {
-                CreatePrefab();
-            }
-        }
-
-        if(magCap == numShots) {
-            if(Time.time - time > reloadTime) {
-                numShots = 0;
-            }
-        }
     }
 
-    void CreatePrefab() {
-        Debug.Log(Time.time - time);
-        float spread = Random.Range(-accuracy, accuracy);
-        float angle = Mathf.Atan2(yDifference, xDifference) * Mathf.Rad2Deg - 90 + spread;
-        Quaternion rotation = Quaternion.Euler(this.transform.rotation.x, this.transform.rotation.y, angle);
-        if(Time.time - time > cyclicRate) {
-            time = Time.time;
-            numShots++;
-            newInstance = Instantiate(Bullet, this.transform.position, rotation);
-            Destroy(newInstance, despawnTime);
+    void DamageHandler() {
+        GameObject[] attacks = GameObject.FindGameObjectsWithTag("Player_Attacks");
+        
+        foreach(GameObject attack in attacks) {
+            float x = gameObject.transform.position.x - attack.transform.position.x;
+            float y = gameObject.transform.position.y - attack.transform.position.y;
+            float hypotenuse = Mathf.Sqrt(Mathf.Pow(Mathf.Abs(x), 2) + Mathf.Pow(y, 2));
+
+            if(hypotenuse < 1f) {
+                health -= 20f;
+                Destroy(attack);
+            }
+        }
+
+        if(health <= 0f) {
+            Destroy(gameObject);
         }
     }
 }

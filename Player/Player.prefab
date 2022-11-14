@@ -148,11 +148,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1677494111117116796}
+  Bullet: {fileID: 938902745584790572, guid: 33021f268eae97041b9169c223b33abe, type: 3}
   jumpAmount: 7.5
   speed: 5
   flightSpeed: 10
   flight: 0
   health: 100
+  despawnTime: 5
 --- !u!1 &1677494111926553761
 GameObject:
   m_ObjectHideFlags: 0

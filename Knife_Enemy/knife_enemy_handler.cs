@@ -17,6 +17,7 @@ public class knife_enemy_handler : MonoBehaviour
     private float xDifference;
     private float yDifference;
     private Vector3 playerPosition;
+    private float health = 200f;
     // Start is called before the first frame update
     void Start()
     {
@@ -91,6 +92,25 @@ public class knife_enemy_handler : MonoBehaviour
         void CreatePrefabRight() {
             time = Time.time;
             newInstance = Instantiate(Enemy_Attack_Right, this.transform, false );
+        }
+
+        GameObject[] attacks = GameObject.FindGameObjectsWithTag("Player_Attacks");
+        
+        foreach(GameObject attack in attacks) {
+            float x = gameObject.transform.position.x - attack.transform.position.x;
+            float y = gameObject.transform.position.y - attack.transform.position.y;
+            float hypotenuse = Mathf.Sqrt(Mathf.Pow(Mathf.Abs(x), 2) + Mathf.Pow(y, 2));
+
+            Debug.Log(hypotenuse);
+
+            if(hypotenuse < 1f) {
+                health -= 20f;
+                Destroy(attack);
+            }
+        }
+
+        if(health <= 0f) {
+            Destroy(gameObject);
         }
     }
 }

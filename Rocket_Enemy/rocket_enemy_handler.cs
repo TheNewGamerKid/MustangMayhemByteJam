@@ -15,6 +15,7 @@ public class rocket_enemy_handler : MonoBehaviour
     private float yDifference;
     private float hypotenuse;
     private float time = 4f;
+    private float health = 80f;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +57,25 @@ public class rocket_enemy_handler : MonoBehaviour
                     Destroy(newInstance, flightTime);
                 }
             }
+        }
+
+        GameObject[] attacks = GameObject.FindGameObjectsWithTag("Player_Attacks");
+        
+        foreach(GameObject attack in attacks) {
+            float x = gameObject.transform.position.x - attack.transform.position.x;
+            float y = gameObject.transform.position.y - attack.transform.position.y;
+            float hypotenuse = Mathf.Sqrt(Mathf.Pow(Mathf.Abs(x), 2) + Mathf.Pow(y, 2));
+
+            Debug.Log(hypotenuse);
+
+            if(hypotenuse < 1f) {
+                health -= 20f;
+                Destroy(attack);
+            }
+        }
+
+        if(health <= 0f) {
+            Destroy(gameObject);
         }
     }
 }
